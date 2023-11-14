@@ -26,4 +26,19 @@ class MemberRepositoryTest {
             memberRepository.save(member);
         }
     }
+
+    @Test
+    public void insertMember_300(){
+        for (int i = 0; i < 300; i++) {
+            Member member = Member.builder()
+                    .memberId("member" + i)
+                    .password("pass" + i)
+                    .build();
+
+            member.setRole(Role.USER);
+            member.setDepartment(Department.COMPUTER);
+
+            memberRepository.save(member);
+        }
+    }
 }

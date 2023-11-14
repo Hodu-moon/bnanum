@@ -7,6 +7,9 @@ import com.example.bnanum.entity.Department;
 import com.example.bnanum.entity.Role;
 import com.example.bnanum.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +64,11 @@ public class MemberService {
             return 1;
         } else
             return 0;
+    }
+
+    //TODO 테스트 후 삭제할 것
+    public Page<Member> getList(int page){
+        Pageable pageRequest = PageRequest.of(page, 10);
+        return this.memberRepository.findAll(pageRequest);
     }
 }

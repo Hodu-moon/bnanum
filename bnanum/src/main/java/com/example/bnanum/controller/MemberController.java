@@ -1,10 +1,12 @@
 package com.example.bnanum.controller;
 
+import com.example.bnanum.domain.Member;
 import com.example.bnanum.dto.MemberDTO;
 import com.example.bnanum.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.integration.IntegrationProperties;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +55,16 @@ public class MemberController {
             bindingResult.addError(new FieldError("memberDTO", "id",null
                     ,false, null, null, "중복"));
         }
+
+        
+    }
+
+    // TODO 테스트 후 삭제할 것
+    @GetMapping("/list")
+    public Page<Member> list(){
+        Page<Member> paging = this.memberService.getList(0);
+
+        return paging;
     }
 
 

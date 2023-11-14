@@ -1,6 +1,8 @@
 package com.example.bnanum.repository;
 
 import com.example.bnanum.domain.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +16,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // select m from Member m where m.member_id = member_id 쿼리 생성
     Member findByMemberId(@Param("member_id")String member_id);
+
+    // TODO 테스트 후 삭제할 것
+    Page<Member> findAll(Pageable pageable);
+
 }
